@@ -1,45 +1,40 @@
 import 'dotenv/config';
-import { getRPSChoices } from './game.js';
-import { capitalize, InstallGlobalCommands } from './utils.js';
+import { InstallGlobalCommands } from './utils.js';
 
-// Get the game choices from game.js
-function createCommandChoices() {
-  const choices = getRPSChoices();
-  const commandChoices = [];
-
-  for (let choice of choices) {
-    commandChoices.push({
-      name: capitalize(choice),
-      value: choice.toLowerCase(),
-    });
-  }
-
-  return commandChoices;
-}
-
-// Simple test command
-const TEST_COMMAND = {
-  name: 'test',
-  description: 'Basic command',
+const GET_PROBLEM = {
+  name: 'problem',
+  description: 'Get a random Problem',
   type: 1,
 };
 
-// Command containing options
-const CHALLENGE_COMMAND = {
-  name: 'challenge',
-  description: 'Challenge to a match of rock paper scissors',
+const SUBMIT_PROBLEM = {
+  name: 'submit',
+  description: 'Submit a Problem to the database',
   options: [
     {
       type: 3,
-      name: 'object',
-      description: 'Pick your object',
+      name: 'problem',
+      description: 'your Problem suggestion',
       required: true,
-      choices: createCommandChoices(),
-    },
+    }
   ],
   type: 1,
 };
 
-const ALL_COMMANDS = [TEST_COMMAND, CHALLENGE_COMMAND];
+const DELETE_PROBLEM = {
+  name: 'delete',
+  description: 'delete a Problem in the database',
+  options: [
+    {
+      type: 4,
+      name: 'problem ID',
+      description: 'the ID for the Problem you want to remove',
+      required: true,
+    }
+  ],
+  type: 1,
+}
+
+const ALL_COMMANDS = [GET_PROBLEM, SUBMIT_PROBLEM, DELETE_PROBLEM];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);

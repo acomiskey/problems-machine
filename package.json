@@ -1,7 +1,7 @@
 {
-  "name": "getting-started",
+  "name": "problems-machine",
   "version": "1.0.0",
-  "description": "Discord example app",
+  "description": "Discord bot that provides a prompt when asked.",
   "main": "app.js",
   "type": "module",
   "engines": {
@@ -12,9 +12,10 @@
     "register": "node commands.js",
     "dev": "nodemon app.js"
   },
-  "author": "Shay DeWael",
+  "author": "b.t. reid",
   "license": "MIT",
   "dependencies": {
+    "better-sqlite3": "^9.4.5",
     "discord-interactions": "^3.2.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
